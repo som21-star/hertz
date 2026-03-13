@@ -2,6 +2,8 @@
 
 A modern, sleek web application for streaming live radio stations from around the world. Built with React, TypeScript, and Supabase.
 
+Live: https://frequency-house-fm.vercel.app/
+
 ![Frequency House](https://lovable.dev/opengraph-image-p98pqg.png)
 
 ## ✨ Features
