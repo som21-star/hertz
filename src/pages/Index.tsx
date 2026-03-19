@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Radio, Sparkles, Music2, Disc3, Headphones, Mic2, Globe2, Waves, Zap, Film, Music } from 'lucide-react';
 import { Header } from '@/components/Header';
@@ -386,12 +387,12 @@ const Index = () => {
                   <p className="text-[11px] text-muted-foreground">HD audio · No ads · Exclusive regions</p>
                 </div>
               </div>
-              <a
-                href="/premium"
+              <Link
+                to="/premium"
                 className="block w-full text-center py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm transition-all hover:opacity-90 active:scale-98"
               >
                 Explore Premium Plans
-              </a>
+              </Link>
             </div>
           </motion.section>
         )}
