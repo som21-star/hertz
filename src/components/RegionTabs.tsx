@@ -4,6 +4,7 @@ import { REGIONS, Region } from '@/types/radio';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 interface RegionTabsProps {
   selectedRegion: string;
@@ -12,6 +13,7 @@ interface RegionTabsProps {
 
 export function RegionTabs({ selectedRegion, onSelectRegion }: RegionTabsProps) {
   const { isPremium } = useAuth();
+  const navigate = useNavigate();
   
   const handleRegionClick = (region: Region) => {
     if (region.premium && !isPremium) {
@@ -19,7 +21,7 @@ export function RegionTabs({ selectedRegion, onSelectRegion }: RegionTabsProps) 
         description: 'Upgrade to access all regions worldwide!',
         action: {
           label: 'Upgrade',
-          onClick: () => window.location.href = '/premium'
+          onClick: () => navigate('/premium')
         }
       });
       return;
@@ -28,7 +30,7 @@ export function RegionTabs({ selectedRegion, onSelectRegion }: RegionTabsProps) 
   };
   
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide touch-scroll-x">
       {REGIONS.map((region) => (
         <RegionTab
           key={region.id}
