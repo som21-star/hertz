@@ -179,7 +179,7 @@ export default function Premium() {
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-5">
               <Crown className="w-3.5 h-3.5 text-primary" />
-              <span className="text-[11px] font-bold text-primary uppercase tracking-widest">Frequency House Premium</span>
+              <span className="text-[11px] font-bold text-primary uppercase tracking-widest">Hertz Premium</span>
             </div>
 
             <h1 className="font-display text-3xl font-bold text-foreground mb-2 leading-tight">

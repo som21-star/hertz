@@ -21,14 +21,14 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">1. Acceptance of Terms</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                By accessing and using Frequency House ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use the Service.
+                By accessing and using Hertz ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use the Service.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">2. Description of Service</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Frequency House provides access to live radio streaming from stations around the world. The Service includes both free and premium subscription tiers with varying features and capabilities.
+                Hertz provides access to live radio streaming from stations around the world. The Service includes both free and premium subscription tiers with varying features and capabilities.
               </p>
             </section>
 
@@ -100,7 +100,7 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">9. Limitation of Liability</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                To the maximum extent permitted by law, Frequency House shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service.
+                To the maximum extent permitted by law, Hertz shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service.
               </p>
             </section>
 
@@ -124,7 +124,7 @@ export default function Terms() {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <p className="text-sm text-foreground mt-2">
-                Email: support@frequencyhouse.com
+                Email: support@hertz.com
               </p>
             </section>
           </div>

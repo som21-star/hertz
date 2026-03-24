@@ -21,7 +21,7 @@ export default function Privacy() {
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">1. Introduction</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Frequency House ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
+                Hertz ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
               </p>
             </section>
 
@@ -137,7 +137,7 @@ export default function Privacy() {
                 <li>Data portability</li>
               </ul>
               <p className="text-sm text-muted-foreground leading-relaxed mt-2">
-                To exercise these rights, please contact us at privacy@frequencyhouse.com
+                To exercise these rights, please contact us at privacy@hertz.com
               </p>
             </section>
 
@@ -175,8 +175,8 @@ export default function Privacy() {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <div className="text-sm text-foreground mt-2 space-y-1">
-                <p>Email: privacy@frequencyhouse.com</p>
-                <p>Support: support@frequencyhouse.com</p>
+                <p>Email: privacy@hertz.com</p>
+                <p>Support: support@hertz.com</p>
               </div>
             </section>
 

@@ -16,7 +16,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   },
   global: {
     headers: {
-      'X-Client-Info': 'frequency-house-web',
+      'X-Client-Info': 'hertz-web',
     },
   },
 });

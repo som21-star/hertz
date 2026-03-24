@@ -35,8 +35,7 @@ export function Header() {
             </div>
             <div>
               <div className="flex items-baseline gap-1">
-                <span className="font-display font-bold text-base text-foreground tracking-tight">Frequency</span>
-                <span className="font-display font-bold text-base text-gradient-primary">House</span>
+                <span className="font-display font-bold text-base text-foreground tracking-tight">Hertz</span>
               </div>
               <div className="text-[11px] text-muted-foreground -mt-0.5">Your Home of Radio</div>
             </div>
