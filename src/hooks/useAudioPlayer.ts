@@ -87,7 +87,41 @@ export function useAudioPlayer() {
     }
 
     audioRef.current.src = streamUrl;
-    audioRef.current.play().catch((e) => {
+    audioRef.current.play().then(() => {
+      // Set up media session for lock screen controls and background playback
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: station.name,
+          artist: station.country || 'Live Radio',
+          album: 'Frequency House',
+          artwork: station.favicon ? [
+            { src: station.favicon, sizes: '96x96', type: 'image/png' },
+            { src: station.favicon, sizes: '128x128', type: 'image/png' },
+            { src: station.favicon, sizes: '192x192', type: 'image/png' },
+            { src: station.favicon, sizes: '256x256', type: 'image/png' },
+            { src: station.favicon, sizes: '384x384', type: 'image/png' },
+            { src: station.favicon, sizes: '512x512', type: 'image/png' }
+          ] : []
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => {
+          audioRef.current?.play().catch(console.error);
+        });
+        
+        navigator.mediaSession.setActionHandler('pause', () => {
+          audioRef.current?.pause();
+        });
+        
+        navigator.mediaSession.setActionHandler('stop', () => {
+          audioRef.current?.pause();
+          setState(prev => ({ 
+            ...prev, 
+            isPlaying: false, 
+            currentStation: null 
+          }));
+        });
+      }
+    }).catch((e) => {
       console.error('Playback failed:', e);
       const errorMsg = 'Failed to play station. It might be offline or blocked.';
       setState(prev => ({ 

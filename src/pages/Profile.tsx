@@ -21,13 +21,49 @@ export default function Profile() {
 
   useEffect(() => {
     if (!user) return;
-    const md = (user.user_metadata ?? {}) as any;
-    setDisplayName(md.display_name || '');
-    setCustomerName(md.customer_name || '');
-    setPhoneNumber(md.phone_number || '');
-    setLocation(md.location || '');
-    setBio(md.bio || '');
-    setAvatarData(md.avatar_base64 || md.avatar_url || null);
+    
+    // Fetch profile from database
+    const fetchProfile = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single();
+          
+        if (error) throw error;
+        
+        if (data) {
+          setDisplayName(data.display_name || '');
+          setCustomerName(data.customer_name || '');
+          setPhoneNumber(data.phone_number || '');
+          setLocation(data.location || '');
+          setBio(data.bio || '');
+          setAvatarData(data.avatar_base64 || data.avatar_url || null);
+        } else {
+          // Fallback to metadata if no record
+          const md = (user.user_metadata ?? {}) as any;
+          setDisplayName(md.display_name || '');
+          setCustomerName(md.customer_name || '');
+          setPhoneNumber(md.phone_number || '');
+          setLocation(md.location || '');
+          setBio(md.bio || '');
+          setAvatarData(md.avatar_base64 || md.avatar_url || null);
+        }
+      } catch (err) {
+        console.warn('Failed to load profile', err);
+        // Fallback to metadata
+        const md = (user.user_metadata ?? {}) as any;
+        setDisplayName(md.display_name || '');
+        setCustomerName(md.customer_name || '');
+        setPhoneNumber(md.phone_number || '');
+        setLocation(md.location || '');
+        setBio(md.bio || '');
+        setAvatarData(md.avatar_base64 || md.avatar_url || null);
+      }
+    };
+    
+    fetchProfile();
 
     // Load listens from localStorage
     try {
@@ -53,7 +89,24 @@ export default function Profile() {
     if (!user) return alert('Sign in to update profile');
     setLoading(true);
     try {
-      const { error } = await supabase.auth.updateUser({ 
+      // 1. Update the profiles table
+      const { error: dbError } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          display_name: displayName,
+          customer_name: customerName,
+          phone_number: phoneNumber,
+          location: location,
+          bio: bio,
+          avatar_base64: avatarData,
+          updated_at: new Date().toISOString()
+        });
+        
+      if (dbError) throw dbError;
+        
+      // 2. Also implicitly update auth metadata to keep it fully synced
+      await supabase.auth.updateUser({ 
         data: { 
           display_name: displayName, 
           customer_name: customerName,
@@ -63,7 +116,6 @@ export default function Profile() {
           avatar_base64: avatarData 
         } 
       });
-      if (error) throw error;
       alert('Profile updated successfully!');
     } catch (err: any) {
       console.error(err);
@@ -78,7 +130,7 @@ export default function Profile() {
     .slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-background pb-28">
+    <div className="min-h-screen bg-background pb-safe-player">
       <Header />
       <main className="relative z-10 max-w-4xl mx-auto px-4 py-8">
         <h1 className="font-display text-3xl font-bold text-foreground mb-2">Profile</h1>
