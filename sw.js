@@ -1,5 +1,5 @@
-// Service Worker for Frequency House
-const CACHE_NAME = 'frequency-house-v1';
+// Service Worker for Hertz
+const CACHE_NAME = 'hertz-v1';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache on install
@@ -88,7 +88,7 @@ self.addEventListener('sync', (event) => {
 // Push notifications (future enhancement)
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
-  const title = data.title || 'Frequency House';
+  const title = data.title || 'Hertz';
   const options = {
     body: data.body || 'New notification',
     icon: '/favicon.png',
